@@ -1,2 +1,2 @@
 # vim_setup
-store my vimrc
+This folder is to be placed under `~/.config` for the nvim setup
