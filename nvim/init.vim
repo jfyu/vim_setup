@@ -13,12 +13,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'f-person/git-blame.nvim'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 "Plug 'lervag/vimtex'
@@ -28,20 +25,18 @@ Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'preservim/nerdtree'
+"Plug 'preservim/nerdtree'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'chriskempson/base16-vim'
 Plug 'arcticicestudio/nord-vim'
-", {'branch': 'v0.18.0'}
-"Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'psf/black' 
-"Plug 'stsewd/isort.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope-github.nvim'
 Plug 'cljoly/telescope-repo.nvim'
-"Plug 'airblade/vim-rooter'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'liuchengxu/vista.vim'
 Plug 'williamboman/nvim-lsp-installer'
@@ -54,7 +49,6 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'tamton-aquib/duck.nvim'
-"Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plug#end()
 
@@ -147,9 +141,9 @@ let g:slime_bracketed_paste = 1
 
 "NERDTree
 "nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-t> :NERDTree<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+"nnoremap <C-n> :NERDTreeToggle<CR>
+"nnoremap <C-t> :NERDTree<CR>
+"nnoremap <C-f> :NERDTreeFind<CR>
 
 "Set the python hoset to conda
 let g:python3_host_prog=expand('~/mambaforge/bin/python')

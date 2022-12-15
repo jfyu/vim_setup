@@ -1,12 +1,49 @@
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup({
+      sort_by = "case_sensitive",
+      sync_root_with_cwd = false,
+      respect_buf_cwd = true,
+      open_on_setup = true,
+      view = {
+        adaptive_size = true,
+        mappings = {
+          list = {
+            { key = "u", action = "dir_up" },
+            { key = 's', action = 'split'},
+            { key = "t", action = 'tabe'},
+          },
+        },
+      },
+      renderer = {
+        group_empty = true,
+      },
+      filters = {
+        dotfiles = true,
+      },
+      update_focused_file = {
+                  enable = true,
+                  update_cwd = true,
+               },
+})
+
+local map = require('utils').map --use mapping function
+map('n', '<C-n>', ':NvimTreeToggle<CR>', {noremap = true})
+map('n', '<C-f>', ':NvimTreeFindFileToggle<CR>', {noremap = true})
+
 require("nvim-lsp-installer").setup {}
 
 local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  ),
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
   on_attach = function(client, bufnr)
     vim.api.nvim_exec_autocmds('User', {pattern = 'LspAttached'})
   end
@@ -158,8 +195,7 @@ lspconfig.sumneko_lua.setup({})
   })
 
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['pyright'].setup {
     capabilities = capabilities
   }
