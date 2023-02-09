@@ -49,7 +49,9 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'tamton-aquib/duck.nvim'
-
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
 call plug#end()
 
 filetype plugin indent on    " required
@@ -173,3 +175,5 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 "get lua 
 lua require ('config')
 
+"let g:dbs = {'wsdev': $CONN_PANTHEON}
+"autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })

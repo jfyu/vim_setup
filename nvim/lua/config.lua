@@ -1,6 +1,6 @@
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+--[[-- disable netrw at the very start of your init.lua (strongly advised)]]
+--[[vim.g.loaded_netrw = 1]]
+--[[vim.g.loaded_netrwPlugin = 1]]
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
@@ -11,12 +11,15 @@ require("nvim-tree").setup({
       sync_root_with_cwd = false,
       respect_buf_cwd = true,
       open_on_setup = true,
+      disable_netrw = false,
+      hijack_netrw = true,
       view = {
         adaptive_size = true,
         mappings = {
           list = {
             { key = "u", action = "dir_up" },
-            { key = 's', action = 'split'},
+            { key = 's', action = 'vsplit'},
+            { key = '<C-s>', action = 'split'},
             { key = "t", action = 'tabe'},
           },
         },
@@ -31,6 +34,7 @@ require("nvim-tree").setup({
                   enable = true,
                   update_cwd = true,
                },
+        
 })
 
 local map = require('utils').map --use mapping function
@@ -48,7 +52,8 @@ local lsp_defaults = {
     vim.api.nvim_exec_autocmds('User', {pattern = 'LspAttached'})
   end
 }
-
+ -- setup vim-dadbod-ui
+  
 local lspconfig = require('lspconfig')
 
 lspconfig.util.default_config = vim.tbl_deep_extend(
@@ -194,10 +199,23 @@ lspconfig.sumneko_lua.setup({})
     })
   })
 
+  -- setup vim-dadbod-completion
+  vim.api.nvim_create_autocmd('FileType', {
+          pattern = 'sql', 
+          desc = 'vimd-dadbod-completion',
+          callback = function()
+                cmp.setup.buffer({sources = {{ name = 'vim-dadbod-completion'}, {name = 'buffer'} }})
+            end
+    }
+    )
+
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['pyright'].setup {
     capabilities = capabilities
+  }
+  require('lspconfig')['r_language_server'].setup {
+          capabilities = capabilities
   }
 
   -- setup telescope
@@ -209,3 +227,5 @@ require('telescope').load_extension('gh')
 vim.keymap.set('n', '<leader>dd', function() require("duck").hatch("🐈") end, {})
 vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
 
+--vim-dadbod-ui
+vim.g.dbs = {wsdev = os.getenv("CONN_PANTHEON")}
