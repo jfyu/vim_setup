@@ -2,6 +2,13 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
+        priority=1000,
+        config = function()
+            require('catppuccin').setup({
+                flavour="mocha"
+            })
+            vim.cmd.colorscheme "catppuccin"
+        end,
     },
     {
         'nvim-lualine/lualine.nvim',
@@ -35,7 +42,8 @@ return {
             "tpope/vim-rhubarb",
             "idanarye/vim-merginal",
         },
-        cmd = { "Git", "Gstatus", "Gblame", "Gpush", "Gpull" },
+        lazy=false,
+        --cmd = { "Git", "Gstatus", "Gblame", "Gpush", "Gpull" },
     },
     {
         "f-person/git-blame.nvim",
