@@ -3,7 +3,7 @@ return {
         "catppuccin/nvim",
         name = "catppuccin",
         priority=1000,
-        config = function()
+        init = function()
             require('catppuccin').setup({
                 flavour="mocha"
             })
@@ -21,20 +21,11 @@ return {
             })
         end,
     },
-
     -- Treesitter
     {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = { "lua", "vim", "python", "r" },
-                highlight = { enable = true },
-                indent = { enable = true },
-            })
-        end,
+        "nvim-treesitter/nvim-treesitter", 
+        build = ":TSUpdate"
     },
-
     -- Git plugins
     {
         "tpope/vim-fugitive",
@@ -101,10 +92,14 @@ return {
     },
 
     -- Utilities
+    -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
     {
-        "scrooloose/nerdcommenter",
-        event = { "BufReadPre", "BufNewFile" },
+        'numToStr/Comment.nvim',
+        init = function()
+            require('Comment').setup()
+        end
     },
+
     {
         "christoomey/vim-tmux-navigator",
         event = "VeryLazy",
